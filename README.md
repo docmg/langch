@@ -2,6 +2,8 @@
 
 Langch is a command-line tool designed to simplify the process of changing keyboard layouts on macOS using shell. It provides a convenient interface to list available layouts, change to a specific layout or circle trough.
 
+![Demonstration](/docs/images/demo.gif)
+
 ## Features
 
 - List all selectable keyboard layouts on your macOS system.
