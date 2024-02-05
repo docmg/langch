@@ -38,7 +38,7 @@ To use custom keybindings for layouts, you need to disable system default shortc
 
 5. Make the scripts executable using `chmod +x`.
 
-[../examples/raycast](../examples/raycast)
+Check examples in [../examples/raycast](../examples/raycast)
 
 ## Setting Up Langch Commands in Raycast
 
@@ -52,4 +52,4 @@ Adjust the keybindings according to your preferences.
 
 ## Result
 
-![Screenshot of imported scripts in Raycast settings](/images/raycast.png)
+![Screenshot of imported scripts in Raycast settings](/docs/images/raycast.png)
