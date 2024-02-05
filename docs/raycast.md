@@ -31,12 +31,14 @@ To use custom keybindings for layouts, you need to disable system default shortc
     # Optional parameters:
     # @raycast.icon 🤖
 
-    langch ch --force <layoutID> # Replace <layoutID> with the desired keyboard layout ID
+    langch ch --force --silent <layoutID> # Replace <layoutID> with the desired keyboard layout ID
    ```
 
 4. Save each script file.
 
 5. Make the scripts executable using `chmod +x`.
+
+[../examples/raycast](../examples/raycast)
 
 ## Setting Up Langch Commands in Raycast
 
@@ -47,3 +49,7 @@ To use custom keybindings for layouts, you need to disable system default shortc
 5. Now, you can use Raycast to easily switch between layouts by executing your custom scripts.
 
 Adjust the keybindings according to your preferences.
+
+## Result
+
+![Screenshot of imported scripts in Raycast settings](/images/raycast.png)
