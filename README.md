@@ -33,7 +33,7 @@ langch ls
 
 Print current layout id
 ```
-langch ls
+langch current
 ```
 
 Change layout
