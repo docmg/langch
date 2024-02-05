@@ -12,6 +12,12 @@ func getInputSources() -> [TISInputSource] {
     return selectableInputSources
 }
 
+func printMessage(_ message: String, silent: Bool = false) {
+    if !silent {
+        print(message)
+    }
+}
+
 struct ListLayouts: ParsableCommand {
     static let configuration = CommandConfiguration(
       commandName: "ls",
@@ -20,7 +26,7 @@ struct ListLayouts: ParsableCommand {
 
     func run() {
         let layoutIDs = getInputSources().map { $0.id }
-        print(layoutIDs.joined(separator: "\n"))
+        printMessage(layoutIDs.joined(separator: "\n"))
     }
 }
 
@@ -34,11 +40,11 @@ struct CurrentLayout: ParsableCommand {
         let inputSources = getInputSources()
 
         guard let currentLayout = inputSources.first(where: { $0.isSelected }) else {
-            print("Error: Unable to determine the current layout.")
+            printMessage("Error: Unable to determine the current layout.")
             throw ExitCode.failure
         }
 
-        print(currentLayout.id)
+        printMessage(currentLayout.id)
     }
 }
 
@@ -54,23 +60,26 @@ struct ChangeLayout: ParsableCommand {
     @Flag(name: .shortAndLong, help: "Force change the layout even if it's already selected")
     var force: Bool = false
 
+    @Flag(name: .shortAndLong, help: "Suppress output messages")
+    var silent: Bool = false
+
     func run() throws {
         let inputSources = getInputSources()
 
         guard let targetLayout = inputSources.first(where: { $0.id == layoutID }) else {
-            print("Error: Layout with ID \(layoutID) not found.")
+            printMessage("Error: Layout with ID \(layoutID) not found.", silent: silent)
             throw ExitCode.failure
         }
 
         if targetLayout.isSelected && !force {
-            print("Error: Layout \(targetLayout.id) is already selected. Use --force to override.")
+            printMessage("Error: Layout \(targetLayout.id) is already selected. Use --force to override.", silent: silent)
             throw ExitCode.failure
         }
 
         if targetLayout.select() {
-            print("Layout switched to: \(targetLayout.id)")
+            printMessage("Layout switched to: \(targetLayout.id)", silent: silent)
         } else {
-            print("Error: Failed to change layout.")
+            printMessage("Error: Failed to change layout.", silent: silent)
             throw ExitCode.failure
         }
     }
@@ -83,21 +92,24 @@ struct PrevLayout: ParsableCommand {
         abstract: "Switch to the previous layout"
     )
 
-    func run() {
-        let allLayouts = getInputSources()
+    @Flag(name: .shortAndLong, help: "Suppress output messages")
+    var silent: Bool = false
 
-        guard let currentIndex = allLayouts.firstIndex(where: { $0.isSelected }) else {
-            print("Error: Unable to determine the current layout.")
+    func run() {
+        let inputSources = getInputSources()
+
+        guard let currentIndex = inputSources.firstIndex(where: { $0.isSelected }) else {
+            printMessage("Error: Unable to determine the current layout.", silent: silent)
             return
         }
 
-        let previousIndex = (currentIndex - 1 + allLayouts.count) % allLayouts.count
-        let previousLayout = allLayouts[previousIndex]
+        let previousIndex = (currentIndex - 1 + inputSources.count) % inputSources.count
+        let previousLayout = inputSources[previousIndex]
 
         if previousLayout.select() {
-            print("Switched to the previous layout: \(previousLayout.id)")
+            printMessage("Switched to the previous layout: \(previousLayout.id)", silent: silent)
         } else {
-            print("Error: Failed to switch to the previous layout.")
+            printMessage("Error: Failed to switch to the previous layout.", silent: silent)
         }
     }
 }
@@ -108,21 +120,24 @@ struct NextLayout: ParsableCommand {
         abstract: "Switch to the next layout"
     )
 
-    func run() {
-        let allLayouts = getInputSources()
+    @Flag(name: .shortAndLong, help: "Suppress output messages")
+    var silent: Bool = false
 
-        guard let currentIndex = allLayouts.firstIndex(where: { $0.isSelected }) else {
-            print("Error: Unable to determine the current layout.")
+    func run() {
+        let inputSources = getInputSources()
+
+        guard let currentIndex = inputSources.firstIndex(where: { $0.isSelected }) else {
+            printMessage("Error: Unable to determine the current layout.", silent: silent)
             return
         }
 
-        let nextIndex = (currentIndex + 1) % allLayouts.count
-        let nextLayout = allLayouts[nextIndex]
+        let nextIndex = (currentIndex + 1) % inputSources.count
+        let nextLayout = inputSources[nextIndex]
 
         if nextLayout.select() {
-            print("Switched to the next layout: \(nextLayout.id)")
+            printMessage("Switched to the next layout: \(nextLayout.id)", silent: silent)
         } else {
-            print("Error: Failed to switch to the next layout.")
+            printMessage("Error: Failed to switch to the next layout.", silent: silent)
         }
     }
 }

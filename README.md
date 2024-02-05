@@ -68,7 +68,7 @@ sudo rm /usr/local/bin/langch
 Feel free to contribute by opening issues or submitting pull requests.
 
 ## Todo
-- [ ] Add --silent flag for ch, next, prev
+- [x] Add --silent flag for ch, next, prev
 - [ ] Add brew formula
 
 ## License
