@@ -1,0 +1,6 @@
+# ~/.config/skhd/skhdrc
+
+fn - 1 : langch ch --force com.apple.keylayout.US
+fn - 2 : langch ch --force com.apple.keylayout.German
+fn - 3 : langch ch --force com.apple.keylayout.Ukrainian-PC
+fn - 4 : langch ch --force com.apple.keylayout.Russian
