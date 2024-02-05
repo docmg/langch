@@ -4,7 +4,7 @@
 
 [https://github.com/koekeishiya/skhd](https://github.com/koekeishiya/skhd). 
 
-Check example configuration in [../examples/skhd](../examples/skhd)
+Check example configuration in [../examples/skhd/skhdrc](../examples/skhd/skhdrc)
 
 ## Prerequisites
 
