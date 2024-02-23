@@ -9,6 +9,10 @@ extension TISInputSource {
     var id: String {
         return getProperty(kTISPropertyInputSourceID) as! String
     }
+    
+    var name: String {
+        return getProperty(kTISPropertyLocalizedName) as! String
+    }
 
     var category: String {
         return getProperty(kTISPropertyInputSourceCategory) as! String

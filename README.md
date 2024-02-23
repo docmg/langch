@@ -71,6 +71,7 @@ Feel free to contribute by opening issues or submitting pull requests.
 
 ## Todo
 - [x] Add --silent flag for ch, next, prev
+- [x] Add --readable flag for ch, next, prev
 - [ ] Add brew formula
 
 ## License

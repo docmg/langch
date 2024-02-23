@@ -62,6 +62,9 @@ struct ChangeLayout: ParsableCommand {
 
     @Flag(name: .shortAndLong, help: "Suppress output messages")
     var silent: Bool = false
+    
+    @Flag(name: .shortAndLong, help: "Output the layout's name instead of its ID")
+    var readable: Bool = false
 
     func run() throws {
         let inputSources = getInputSources()
@@ -77,7 +80,11 @@ struct ChangeLayout: ParsableCommand {
         }
 
         if targetLayout.select() {
-            printMessage("Layout switched to: \(targetLayout.id)", silent: silent)
+            if readable {
+                printMessage(targetLayout.name, silent: silent)
+            } else {
+                printMessage(targetLayout.id, silent: silent)
+            }
         } else {
             printMessage("Error: Failed to change layout.", silent: silent)
             throw ExitCode.failure
@@ -95,6 +102,9 @@ struct PrevLayout: ParsableCommand {
     @Flag(name: .shortAndLong, help: "Suppress output messages")
     var silent: Bool = false
 
+    @Flag(name: .shortAndLong, help: "Output the layout's name instead of its ID")
+    var readable: Bool = false
+    
     func run() {
         let inputSources = getInputSources()
 
@@ -107,7 +117,11 @@ struct PrevLayout: ParsableCommand {
         let previousLayout = inputSources[previousIndex]
 
         if previousLayout.select() {
-            printMessage("Switched to the previous layout: \(previousLayout.id)", silent: silent)
+            if readable {
+                printMessage(previousLayout.name, silent: silent)
+            } else {
+                printMessage(previousLayout.id, silent: silent)
+            }
         } else {
             printMessage("Error: Failed to switch to the previous layout.", silent: silent)
         }
@@ -123,6 +137,9 @@ struct NextLayout: ParsableCommand {
     @Flag(name: .shortAndLong, help: "Suppress output messages")
     var silent: Bool = false
 
+    @Flag(name: .shortAndLong, help: "Output the layout's name instead of its ID")
+    var readable: Bool = false
+    
     func run() {
         let inputSources = getInputSources()
 
@@ -135,7 +152,11 @@ struct NextLayout: ParsableCommand {
         let nextLayout = inputSources[nextIndex]
 
         if nextLayout.select() {
-            printMessage("Switched to the next layout: \(nextLayout.id)", silent: silent)
+            if readable {
+                printMessage(nextLayout.name, silent: silent)
+            } else {
+                printMessage(nextLayout.id, silent: silent)
+            }
         } else {
             printMessage("Error: Failed to switch to the next layout.", silent: silent)
         }
