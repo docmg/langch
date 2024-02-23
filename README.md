@@ -75,4 +75,4 @@ Feel free to contribute by opening issues or submitting pull requests.
 - [ ] Add brew formula
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+[MIT](LICENSE)
