@@ -7,7 +7,7 @@ build:
 	cp .build/release/$(NAME) ./
 
 run: build
-	./build/debug/$(NAME)
+	./$(NAME)
 
 clean:
 	swift package clean
